@@ -1,0 +1,23 @@
+$ratios: 1 1, 1 2, 2 1, 4 3, 16 9;
+
+.aspect {
+  position: relative;
+  &:before {
+    content: "";
+    display: block;
+  }
+  .aspect-inner {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+  }
+}
+
+
+@each $ratio in $ratios {
+  $x: nth($ratio, 1);
+  $y: nth($ratio, 2);
+
+  .aspect.ratio-#{$x}-#{$y}:before {
+    padding-top: $y / $x * 100%;
+  }
+}
